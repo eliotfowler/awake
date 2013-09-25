@@ -17,10 +17,6 @@ Awake is styled very similarly to the native iOS 7 alarm clock. Here are some of
 * Snooze length modification. This is a must. 9 minutes pleases no one.
 * More to come.
 
-License
--------
-
-
 About the developer
 -------------------
 
