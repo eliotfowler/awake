@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7327E5E217983C74008DE365 /* NewAlarmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7327E5E117983C74008DE365 /* NewAlarmViewController.m */; };
 		73352F791796D5D7005902A4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73352F781796D5D7005902A4 /* Foundation.framework */; };
 		73352F7B1796D5D7005902A4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73352F7A1796D5D7005902A4 /* CoreGraphics.framework */; };
 		73352F7D1796D5D7005902A4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73352F7C1796D5D7005902A4 /* UIKit.framework */; };
@@ -21,6 +22,14 @@
 		73352F9A1796D5D7005902A4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73352F7C1796D5D7005902A4 /* UIKit.framework */; };
 		73352FA21796D5D7005902A4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 73352FA01796D5D7005902A4 /* InfoPlist.strings */; };
 		73352FA41796D5D7005902A4 /* AwakeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 73352FA31796D5D7005902A4 /* AwakeTests.m */; };
+		7337FAC517998B7800525830 /* RepeatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7337FAC417998B7800525830 /* RepeatViewController.m */; };
+		73691043179EB01C000460C5 /* AlarmCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 73691042179EB01C000460C5 /* AlarmCell.m */; };
+		7369104717A0181F000460C5 /* SpringLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 7369104617A0181F000460C5 /* SpringLayout.m */; };
+		73C1AF7C17A046110086A127 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 73C1AF7B17A046110086A127 /* UIImage+ImageEffects.m */; };
+		73DDF8A41796EDCB00202521 /* AlarmData.m in Sources */ = {isa = PBXBuildFile; fileRef = 73DDF8A31796EDCB00202521 /* AlarmData.m */; };
+		73FBD97217A0580800AC1722 /* LabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 73FBD97117A0580800AC1722 /* LabelViewController.m */; };
+		73FBD97517A16D5300AC1722 /* AlarmModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 73FBD97317A16D5300AC1722 /* AlarmModel.xcdatamodeld */; };
+		73FBD97717A16D7300AC1722 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73FBD97617A16D7300AC1722 /* CoreData.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +43,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7327E5E017983C74008DE365 /* NewAlarmViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewAlarmViewController.h; sourceTree = "<group>"; };
+		7327E5E117983C74008DE365 /* NewAlarmViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewAlarmViewController.m; sourceTree = "<group>"; };
 		73352F751796D5D7005902A4 /* Awake.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Awake.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73352F781796D5D7005902A4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		73352F7A1796D5D7005902A4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -53,6 +64,20 @@
 		73352F9F1796D5D7005902A4 /* AwakeTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AwakeTests-Info.plist"; sourceTree = "<group>"; };
 		73352FA11796D5D7005902A4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		73352FA31796D5D7005902A4 /* AwakeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AwakeTests.m; sourceTree = "<group>"; };
+		7337FAC317998B7800525830 /* RepeatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepeatViewController.h; sourceTree = "<group>"; };
+		7337FAC417998B7800525830 /* RepeatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepeatViewController.m; sourceTree = "<group>"; };
+		73691041179EB01C000460C5 /* AlarmCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlarmCell.h; sourceTree = "<group>"; };
+		73691042179EB01C000460C5 /* AlarmCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlarmCell.m; sourceTree = "<group>"; };
+		7369104517A0181F000460C5 /* SpringLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpringLayout.h; sourceTree = "<group>"; };
+		7369104617A0181F000460C5 /* SpringLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpringLayout.m; sourceTree = "<group>"; };
+		73C1AF7A17A046110086A127 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
+		73C1AF7B17A046110086A127 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
+		73DDF8A21796EDCB00202521 /* AlarmData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlarmData.h; sourceTree = "<group>"; };
+		73DDF8A31796EDCB00202521 /* AlarmData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlarmData.m; sourceTree = "<group>"; };
+		73FBD97017A0580800AC1722 /* LabelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LabelViewController.h; sourceTree = "<group>"; };
+		73FBD97117A0580800AC1722 /* LabelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LabelViewController.m; sourceTree = "<group>"; };
+		73FBD97417A16D5300AC1722 /* AlarmModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AlarmModel.xcdatamodel; sourceTree = "<group>"; };
+		73FBD97617A16D7300AC1722 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73FBD97717A16D7300AC1722 /* CoreData.framework in Frameworks */,
 				73352F7B1796D5D7005902A4 /* CoreGraphics.framework in Frameworks */,
 				73352F7D1796D5D7005902A4 /* UIKit.framework in Frameworks */,
 				73352F791796D5D7005902A4 /* Foundation.framework in Frameworks */,
@@ -101,6 +127,7 @@
 		73352F771796D5D7005902A4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				73FBD97617A16D7300AC1722 /* CoreData.framework */,
 				73352F781796D5D7005902A4 /* Foundation.framework */,
 				73352F7A1796D5D7005902A4 /* CoreGraphics.framework */,
 				73352F7C1796D5D7005902A4 /* UIKit.framework */,
@@ -112,12 +139,16 @@
 		73352F7E1796D5D7005902A4 /* Awake */ = {
 			isa = PBXGroup;
 			children = (
+				73C1AF7A17A046110086A127 /* UIImage+ImageEffects.h */,
+				73C1AF7B17A046110086A127 /* UIImage+ImageEffects.m */,
+				7369104517A0181F000460C5 /* SpringLayout.h */,
+				7369104617A0181F000460C5 /* SpringLayout.m */,
+				73691044179EB024000460C5 /* Cells */,
+				7337FAC217998B4F00525830 /* Model */,
 				73352F871796D5D7005902A4 /* AppDelegate.h */,
 				73352F881796D5D7005902A4 /* AppDelegate.m */,
 				73352F8A1796D5D7005902A4 /* Main.storyboard */,
-				73352F8D1796D5D7005902A4 /* ViewController.h */,
-				73352F8E1796D5D7005902A4 /* ViewController.m */,
-				73352F901796D5D7005902A4 /* Images.xcassets */,
+				7337FAC117998B2400525830 /* ViewControllers */,
 				73352F7F1796D5D7005902A4 /* Supporting Files */,
 			);
 			path = Awake;
@@ -126,6 +157,7 @@
 		73352F7F1796D5D7005902A4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				73352F901796D5D7005902A4 /* Images.xcassets */,
 				73352F801796D5D7005902A4 /* Awake-Info.plist */,
 				73352F811796D5D7005902A4 /* InfoPlist.strings */,
 				73352F841796D5D7005902A4 /* main.m */,
@@ -150,6 +182,40 @@
 				73352FA01796D5D7005902A4 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7337FAC117998B2400525830 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				73352F8D1796D5D7005902A4 /* ViewController.h */,
+				73352F8E1796D5D7005902A4 /* ViewController.m */,
+				7327E5E017983C74008DE365 /* NewAlarmViewController.h */,
+				7327E5E117983C74008DE365 /* NewAlarmViewController.m */,
+				7337FAC317998B7800525830 /* RepeatViewController.h */,
+				7337FAC417998B7800525830 /* RepeatViewController.m */,
+				73FBD97017A0580800AC1722 /* LabelViewController.h */,
+				73FBD97117A0580800AC1722 /* LabelViewController.m */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		7337FAC217998B4F00525830 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				73FBD97317A16D5300AC1722 /* AlarmModel.xcdatamodeld */,
+				73DDF8A21796EDCB00202521 /* AlarmData.h */,
+				73DDF8A31796EDCB00202521 /* AlarmData.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		73691044179EB024000460C5 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				73691041179EB01C000460C5 /* AlarmCell.h */,
+				73691042179EB01C000460C5 /* AlarmCell.m */,
+			);
+			name = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,6 +265,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Eliot Fowler";
 				TargetAttributes = {
+					73352F741796D5D7005902A4 = {
+						DevelopmentTeam = 99RZ6CD595;
+					};
 					73352F951796D5D7005902A4 = {
 						TestTargetID = 73352F741796D5D7005902A4;
 					};
@@ -250,8 +319,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				73352F8F1796D5D7005902A4 /* ViewController.m in Sources */,
+				73FBD97217A0580800AC1722 /* LabelViewController.m in Sources */,
+				73691043179EB01C000460C5 /* AlarmCell.m in Sources */,
+				7369104717A0181F000460C5 /* SpringLayout.m in Sources */,
+				7337FAC517998B7800525830 /* RepeatViewController.m in Sources */,
+				73DDF8A41796EDCB00202521 /* AlarmData.m in Sources */,
+				73C1AF7C17A046110086A127 /* UIImage+ImageEffects.m in Sources */,
 				73352F891796D5D7005902A4 /* AppDelegate.m in Sources */,
+				7327E5E217983C74008DE365 /* NewAlarmViewController.m in Sources */,
 				73352F851796D5D7005902A4 /* main.m in Sources */,
+				73FBD97517A16D5300AC1722 /* AlarmModel.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -374,9 +451,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Eliot Fowler (UGFZ3G378W)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Awake/Awake-Prefix.pch";
 				INFOPLIST_FILE = "Awake/Awake-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -387,9 +466,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Eliot Fowler (UGFZ3G378W)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Awake/Awake-Prefix.pch";
 				INFOPLIST_FILE = "Awake/Awake-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -454,6 +535,7 @@
 				73352FA91796D5D7005902A4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		73352FAA1796D5D7005902A4 /* Build configuration list for PBXNativeTarget "AwakeTests" */ = {
 			isa = XCConfigurationList;
@@ -462,8 +544,23 @@
 				73352FAC1796D5D7005902A4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		73FBD97317A16D5300AC1722 /* AlarmModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				73FBD97417A16D5300AC1722 /* AlarmModel.xcdatamodel */,
+			);
+			currentVersion = 73FBD97417A16D5300AC1722 /* AlarmModel.xcdatamodel */;
+			name = AlarmModel.xcdatamodeld;
+			path = ../AlarmModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 73352F6D1796D5D7005902A4 /* Project object */;
 }
