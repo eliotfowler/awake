@@ -240,8 +240,8 @@
                                     <outlet property="delegate" destination="FSa-uK-bom" id="ivb-P1-nZD"/>
                                 </connections>
                             </tableView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="This alarm will not repeat." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MLO-zV-VHq">
-                                <rect key="frame" x="25" y="385" width="275" height="60"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="This alarm will not repeat." lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="275" translatesAutoresizingMaskIntoConstraints="NO" id="MLO-zV-VHq">
+                                <rect key="frame" x="25" y="385" width="275" height="134"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
@@ -253,6 +253,7 @@
                     <connections>
                         <outlet property="fridayButton" destination="3xN-oC-xRR" id="Q7Q-Dt-5R7"/>
                         <outlet property="mondayButton" destination="zAt-Zw-7Hb" id="hsr-y2-jUl"/>
+                        <outlet property="repeatLabel" destination="MLO-zV-VHq" id="Kzn-3n-5pp"/>
                         <outlet property="repeatTable" destination="ZOr-bg-lKR" id="G7j-Q7-uaY"/>
                         <outlet property="saturdayButton" destination="onU-PW-oQ5" id="Maa-49-KgA"/>
                         <outlet property="sundayButton" destination="s05-3r-zH5" id="DGE-qA-q7P"/>
