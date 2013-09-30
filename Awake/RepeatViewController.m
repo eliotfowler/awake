@@ -74,7 +74,7 @@
         NSString* key = weekdays[i];
         UIButton* button = weekdayButtons[i];
         double alpha = [[_repeatDays objectForKey:key] boolValue] ? .8 : .2;
-    
+        
         UIColor* newColor = [[button backgroundColor] colorWithAlphaComponent:alpha];
         [button setBackgroundColor:newColor];
     }
@@ -151,7 +151,7 @@
         } else {
             [everydayCell setAccessoryType:UITableViewCellAccessoryNone];
         }
-        return everydayCell;    
+        return everydayCell;
     } else if([indexPath row] == 1) {
         UITableViewCell *weekdaysCell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
         if (weekdaysCell == nil) {
@@ -291,25 +291,25 @@
 - (NSString*) getShortRepeatString
 {
     if(_willRepeatEveryday) {
-        return @"Repeats everyday";
+        return @"Everyday";
     }
     else if(_willRepeatWeekdays) {
-        return @"Repeats weekdays";
+        return @"Weekdays";
     } else if(_willRepeatWeekends) {
-        return @"Repeats weekends";
+        return @"Weekends";
     } else {
         NSString* repeatDaysString = @"";
         if([[_repeatDays objectForKey:@"monday"] boolValue]) {
-            repeatDaysString = [repeatDaysString stringByAppendingString:@"M"];
+            repeatDaysString = [repeatDaysString stringByAppendingString:@"M "];
         }
         if([[_repeatDays objectForKey:@"tuesday"] boolValue]) {
-            repeatDaysString = [repeatDaysString stringByAppendingString:@"T"];
+            repeatDaysString = [repeatDaysString stringByAppendingString:@"T "];
         }
         if([[_repeatDays objectForKey:@"wednesday"] boolValue]) {
-            repeatDaysString = [repeatDaysString stringByAppendingString:@"W"];
+            repeatDaysString = [repeatDaysString stringByAppendingString:@"W "];
         }
         if([[_repeatDays objectForKey:@"thursday"] boolValue]) {
-            repeatDaysString = [repeatDaysString stringByAppendingString:@"R"];
+            repeatDaysString = [repeatDaysString stringByAppendingString:@"R "];
         }
         if([[_repeatDays objectForKey:@"friday"] boolValue]) {
             repeatDaysString = [repeatDaysString stringByAppendingString:@"F "];
@@ -318,7 +318,7 @@
             repeatDaysString = [repeatDaysString stringByAppendingString:@"Sa "];
         }
         if([[_repeatDays objectForKey:@"sunday"] boolValue]) {
-            repeatDaysString = [repeatDaysString stringByAppendingString:@"Su"];
+            repeatDaysString = [repeatDaysString stringByAppendingString:@"Su "];
         }
         return repeatDaysString;
     }
