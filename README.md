@@ -3,6 +3,8 @@ Awake
 
 The iOS 7 Alarm Clock is missing essential features. Awake aims to solve that problem.
 
+*NOTE*: Awake is currently in a non-working state as it is still in initial development.
+
 Features
 --------
 
