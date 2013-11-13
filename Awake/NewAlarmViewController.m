@@ -201,23 +201,9 @@
     [newAlarm setValue:isSet forKey:@"isSet"];
     [newAlarm setValue:_sound forKey:@"sound"];
     
-    /*NSManagedObject *repeatDaysMO = [NSEntityDescription
-                                 insertNewObjectForEntityForName:@"RepeatDays"
-                                 inManagedObjectContext:context];
-    
-    NSArray* days = [[NSArray alloc] initWithObjects:@"monday", @"tuesday", @"wednesday", @"thursday", @"friday", @"saturday", @"sunday", nil];
-    for(NSString* day in days) {
-        [repeatDaysMO setValue:[_repeatDays objectForKey:day] forKey:day];
-    }
-    [newAlarm setValue:repeatDaysMO forKey:@"repeatDays"];*/
-    
     NSError *error;
     [context save:&error];
-    /*if ([_delegate respondsToSelector:@selector(didSaveAlarm:)])
-    {
-        [_delegate didSaveAlarm:_myAlarm];
-    }
-    _savedOrCancelled = true;*/
+    
     [[self presentingViewController] dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -233,6 +219,9 @@
 {
     _repeatDays = repeatDays;
     _repeatString = repeatString;
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    UITableViewCell *repeatCell = [_alarmSettingsTableView cellForRowAtIndexPath:indexPath];
+    repeatCell.detailTextLabel.text = _repeatString;
 }
 
 #pragma mark - UINavigatonBarDelegate

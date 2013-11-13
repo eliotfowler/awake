@@ -14,16 +14,10 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        _isSet = YES;
-        [_switchOnCell setOn:_isSet];
+        
         // Initialization code
     }
     return self;
-}
-- (IBAction)switchWasSwitched:(id)sender {
-    float alpha = [sender isOn] ? 1 : .3;
-    [self setBackgroundColor:[[self backgroundColor] colorWithAlphaComponent:alpha]];
-    _isSet = [sender isOn];
 }
 
 /*

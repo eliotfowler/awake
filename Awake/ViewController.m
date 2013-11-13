@@ -14,7 +14,7 @@
 #import "AppDelegate.h"
 #import "AlarmData.h"
 
-@interface ViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
+@interface ViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, NSFetchedResultsControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *alarmListCollectionView;
 @property (weak, nonatomic) IBOutlet UILabel *alarmListEmptyLabel;
@@ -26,7 +26,9 @@
 
 @end
 
-@implementation ViewController
+@implementation ViewController {
+    NSFetchedResultsController* fetchedResultsController;
+}
 
 
 - (id)initWithCoder:(NSCoder *)aDecoder
@@ -77,59 +79,95 @@
 
 - (void) viewDidAppear:(BOOL)animated
 {
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
-    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Alarm" inManagedObjectContext:context];
     [fetchRequest setEntity:entity];
     
-    NSError *error = nil;
-    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
-    if (fetchedObjects == nil) {
-        NSLog(@"There was a problem: %@", error);
-    }
-    [_alarmListArray removeAllObjects];
-    for (AlarmData *a in fetchedObjects) {
-        [_alarmListArray addObject:a];
-        NSLog(@"Alarm title: %@ with date: %@", a.title, a.date);
-    }
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"title" ascending:YES];
+    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
+    [fetchRequest setSortDescriptors:sortDescriptors];
+    
+    fetchedResultsController = [[NSFetchedResultsController alloc]
+                                initWithFetchRequest:fetchRequest
+                                managedObjectContext:context
+                                sectionNameKeyPath:nil
+                                cacheName:nil];
+    
+    fetchedResultsController.delegate = self;
+    
+    NSError *error;
+    BOOL success = [fetchedResultsController performFetch:&error];
     [self reloadCollectionViewData];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject
+                                                                atIndexPath:(NSIndexPath *)indexPath
+                                                              forChangeType:(NSFetchedResultsChangeType)type
+                                                               newIndexPath:(NSIndexPath *)newIndexPath {
+    UICollectionView* collectionView = self.alarmListCollectionView;
+    
+    switch(type) {
+            
+        case NSFetchedResultsChangeInsert:
+            NSLog(@"Inserting fetched result");
+            [collectionView insertItemsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]];
+            break;
+            
+        case NSFetchedResultsChangeDelete:
+            NSLog(@"Deleting fetched result");
+            [collectionView deleteItemsAtIndexPaths:[NSArray arrayWithObject:indexPath]];
+            break;
+            
+        case NSFetchedResultsChangeUpdate:
+            NSLog(@"Updating fetched result");
+            break;
+            
+        case NSFetchedResultsChangeMove:
+            NSLog(@"Moving fetched result");
+            [collectionView deleteItemsAtIndexPaths:[NSArray arrayWithObject:indexPath]];
+            [collectionView insertItemsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]];
+            break;
+    }
+    
 }
 
 - (NSInteger) numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return 1;
+    return [[fetchedResultsController sections] count];
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return [[self alarmListArray] count];
+    if ([[fetchedResultsController sections] count] > 0) {
+        id <NSFetchedResultsSectionInfo> sectionInfo = [[fetchedResultsController sections] objectAtIndex:section];
+        return [sectionInfo numberOfObjects];
+    } else
+        return 0;
 }
 
 - (UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     AlarmCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
-    AlarmData *alarmData = _alarmListArray[indexPath.row];
+    NSManagedObject *managedObject = [fetchedResultsController objectAtIndexPath:indexPath];
+
+    BOOL isSet = [(NSNumber*)[managedObject valueForKey:@"isSet"] boolValue];
+    NSString* title = [managedObject valueForKey:@"title"];
+    NSDate* date = [managedObject valueForKey:@"date"];
+    NSString* repeatString = [managedObject valueForKey:@"repeatString"];
     
-    double alpha = [cell isSet];
-    
-    cell.backgroundColor = [UIColor colorWithRed:105/255.0 green:195/255.0 blue:255/255.0 alpha:1.f];
-    cell.titleLabel.text = [alarmData title];
+    CGFloat alpha = isSet ? 1.0f : 0.3f;
+    cell.backgroundColor = [UIColor colorWithRed:105/255.0 green:195/255.0 blue:255/255.0 alpha:alpha];
+    [cell.switchOnCell setOn:isSet];
+    cell.titleLabel.text = title;
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
     [dateFormatter setDateFormat:@"h:mm a"];
-    cell.alarmTimeLabel.text = [dateFormatter stringFromDate:[alarmData date]];
-    cell.repeatLabel.text = [alarmData repeatString];
-
+    cell.alarmTimeLabel.text = [dateFormatter stringFromDate:date];
+    cell.repeatLabel.text = repeatString;
+    
     return cell;
 }
 
@@ -141,7 +179,6 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if([segue.identifier isEqualToString:@"showRepeatView"]){
-        //UINavigationController *navController = (UINavigationController *)segue.destinationViewController;
         NewAlarmViewController *controller = (NewAlarmViewController *)segue.destinationViewController;
         
         if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)])
@@ -157,13 +194,31 @@
     }
 }
 
+- (IBAction)switchWasSwitched:(id)sender {
+    UISwitch* alarmSwitch = (UISwitch *)sender;
+    CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.alarmListCollectionView];
+    NSIndexPath* indexPath = [self.alarmListCollectionView indexPathForItemAtPoint:buttonPosition];
+    NSManagedObject* managedObject = [fetchedResultsController objectAtIndexPath:indexPath];
+    NSNumber* isOnNumber = [NSNumber numberWithBool:[alarmSwitch isOn]];
+    [managedObject setValue:isOnNumber forKey:@"isSet"];
+    
+    NSManagedObjectContext *context = [fetchedResultsController managedObjectContext];
+    NSError *error = nil;
+    if (![context save:&error]) {
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+    }
+    
+    AlarmCell* cell = (AlarmCell*)[self.alarmListCollectionView cellForItemAtIndexPath:indexPath];
+    cell.backgroundColor = [cell.backgroundColor colorWithAlphaComponent:[alarmSwitch isOn] ? 1.0f : 0.3f];
+}
+
 #pragma mark - Helpers
 
 - (void)reloadCollectionViewData
 {
     [_alarmListCollectionView reloadData];
     
-    BOOL hasItems = [_alarmListArray count];
+    BOOL hasItems = [[fetchedResultsController fetchedObjects] count] > 0;
     
     [_alarmListCollectionView setHidden:!hasItems];
     [_alarmListEmptyLabel setHidden:hasItems];

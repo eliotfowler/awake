@@ -7,15 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AlarmData.h"
 
 @interface AlarmCell : UICollectionViewCell
 
+@property (nonatomic, strong) AlarmData* alarm;
 @property (nonatomic, weak) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *alarmTimeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *repeatLabel;
-@property bool isSet;
 @property (weak, nonatomic) IBOutlet UISwitch *switchOnCell;
-
-//@property (nonatomic, weak) IBOutlet NSDate *alarmTime;
 
 @end
