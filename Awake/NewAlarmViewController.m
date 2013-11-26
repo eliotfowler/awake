@@ -44,7 +44,7 @@
 {
     [super viewDidLoad];
     _savedOrCancelled = false;
-    _alarmTime = [NSDate date];
+    _alarmTime = _datePicker.date;
     self.title = @"Alarm";
     _repeatDays = [[NSMutableDictionary alloc]
                 initWithObjectsAndKeys:[NSNumber numberWithBool:NO], @"monday",
@@ -195,11 +195,18 @@
     NSManagedObject *newAlarm = [NSEntityDescription
                                  insertNewObjectForEntityForName:@"Alarm"
                                  inManagedObjectContext:context];
-    [newAlarm setValue:_alarmTime forKey:@"date"];
+    
+    //Here we need to get rid of the date portion of the date
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *comps = [calendar components:(NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit) fromDate:_alarmTime];
+    NSDate *timeWithoutDate = [calendar dateFromComponents:comps];
+    
+    [newAlarm setValue:timeWithoutDate forKey:@"date"];
     [newAlarm setValue:self.title forKey:@"title"];
     NSNumber *isSet = [NSNumber numberWithBool:_isSet];
     [newAlarm setValue:isSet forKey:@"isSet"];
     [newAlarm setValue:_sound forKey:@"sound"];
+    [newAlarm setValue:_repeatString forKey:@"repeatString"];
     
     NSError *error;
     [context save:&error];
