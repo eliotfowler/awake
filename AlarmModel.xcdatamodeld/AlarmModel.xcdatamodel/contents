@@ -4,6 +4,7 @@
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="isSet" optional="YES" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
         <attribute name="repeatString" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="snoozeLength" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="sound" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
     </entity>

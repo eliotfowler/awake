@@ -136,6 +136,11 @@
     return _persistentStoreCoordinator;
 }
 
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Alarm!" message:notification.alertBody delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    [alertView show];
+}
+
 #pragma mark - Application's Documents directory
 
 // Returns the URL to the application's Documents directory.

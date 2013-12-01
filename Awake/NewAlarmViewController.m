@@ -59,15 +59,24 @@
     _isSet = YES;
 }
 
-- (void)viewDidAppear:(BOOL)animated{
-    /*if(_myAlarm == nil || _savedOrCancelled) {
-        _myAlarm = [AlarmData new];
-        [_myAlarm setTitle:@"Alarm"];
-        [_myAlarm setAlarmTime:[_datePicker date]];
-        [_myAlarm setSound:@"Alarm"];
-        [_alarmSettingsTableView reloadData];
+- (void)viewDidAppear:(BOOL)animated {
+    if(_savedOrCancelled) {
         _savedOrCancelled = false;
-    }*/
+        _datePicker.date = [NSDate date];
+        _alarmTime = _datePicker.date;
+        self.title = @"Alarm";
+        _repeatDays = [[NSMutableDictionary alloc]
+                       initWithObjectsAndKeys:[NSNumber numberWithBool:NO], @"monday",
+                       [NSNumber numberWithBool:NO], @"tuesday",
+                       [NSNumber numberWithBool:NO], @"wednesday",
+                       [NSNumber numberWithBool:NO], @"thursday",
+                       [NSNumber numberWithBool:NO], @"friday",
+                       [NSNumber numberWithBool:NO], @"saturday",
+                       [NSNumber numberWithBool:NO], @"sunday",
+                       nil];
+        _sound = @"Alarm";
+        _isSet = YES;
+    }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -211,6 +220,8 @@
     NSError *error;
     [context save:&error];
     
+    [self scheduleLocalNotification];
+    
     [[self presentingViewController] dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -240,4 +251,34 @@
 - (IBAction)didChangePickerValue:(id)sender {
     _alarmTime = [sender date];
 }
+
+#pragma mark - private helper methods
+- (void)scheduleLocalNotification {
+    NSDate* today = [NSDate date];
+    // We need to schedule a local notification
+    UILocalNotification* localNotification = [[UILocalNotification alloc] init];
+    bool neverRepeats = true;
+    for(id key in _repeatDays) {
+        if([[_repeatDays objectForKey:key] boolValue]) {
+            neverRepeats = false;
+            localNotification.fireDate = _alarmTime;
+            localNotification.alertBody = @"Title";
+            localNotification.timeZone = [NSTimeZone systemTimeZone];
+            localNotification.alertAction = @"I'm up, I'm up!";
+            localNotification.repeatInterval = NSWeekCalendarUnit;
+            [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+        }
+    }
+    if(neverRepeats) {
+        if([_alarmTime earlierDate:today] == today) {
+            localNotification.fireDate = _alarmTime;
+            localNotification.alertBody = @"Title";
+            localNotification.timeZone = [NSTimeZone systemTimeZone];
+            localNotification.alertAction = @"I'm up, I'm up!";
+            [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+        }
+    }
+    
+}
+
 @end

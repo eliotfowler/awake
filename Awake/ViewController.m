@@ -85,7 +85,7 @@
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Alarm" inManagedObjectContext:context];
     [fetchRequest setEntity:entity];
     
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"title" ascending:YES];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:YES];
     NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
     [fetchRequest setSortDescriptors:sortDescriptors];
     
@@ -99,7 +99,11 @@
     
     NSError *error;
     BOOL success = [fetchedResultsController performFetch:&error];
+    if(!success) {
+        NSLog(@"There was ab error fetching data: %@", error);
+    }
     [self reloadCollectionViewData];
+    _modalNavController = [self.storyboard instantiateViewControllerWithIdentifier:@"NewAlarmViewController"];
 }
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject
@@ -222,7 +226,6 @@
     
     [_alarmListCollectionView setHidden:!hasItems];
     [_alarmListEmptyLabel setHidden:hasItems];
-    
 }
 
 
